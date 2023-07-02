@@ -1,2 +1,0 @@
-# threejs-kadai-ganbal
-めんどくさ

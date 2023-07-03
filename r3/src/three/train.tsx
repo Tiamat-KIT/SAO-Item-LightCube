@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, ThreeElements, useLoader } from '@react-three/fiber'
+import { Canvas, useFrame, ThreeElements, useLoader, useThree } from '@react-three/fiber'
 import { useCubeTexture } from '@react-three/drei';
 
 export function Box(props: ThreeElements['mesh']) {
@@ -9,8 +9,10 @@ export function Box(props: ThreeElements['mesh']) {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
 
-  const textureMap = useLoader(THREE.TextureLoader,"./cube/normal_1.png")
-  const lighttexture = useLoader(THREE.TextureLoader,"./cube/light_1.png")
+  const {scene} = useThree()
+/* 
+  const textureMap = useLoader(THREE.TextureLoader,"/cube/normal_1.png")
+  const lighttexture = useLoader(THREE.TextureLoader,"/cube/light_1.png") */
 
   const cubetexturemap = useCubeTexture([
     "normal_1.png",
@@ -19,7 +21,7 @@ export function Box(props: ThreeElements['mesh']) {
     "normal_4.png",
     "plane.png",
     "plane.png"
-  ],{path: "./cube/"})
+  ],{path: "./"})
 
 
   const lighttexturemap = useCubeTexture([
@@ -29,7 +31,7 @@ export function Box(props: ThreeElements['mesh']) {
     "light_4.png",
     "plane.png",
     "plane.png"
-  ],{path: "./cube/"})
+  ],{path: "./"})
  
 
   useFrame((state, delta) => {
@@ -37,10 +39,12 @@ export function Box(props: ThreeElements['mesh']) {
     meshRef.current.rotation.y += delta  
   })
 
+
   return (
     <mesh
       /* {...props} */
       ref={meshRef}
+      position={[-1,1,0]}
       scale={active ? 1.5 : 1}
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
@@ -51,7 +55,7 @@ export function Box(props: ThreeElements['mesh']) {
       <boxGeometry args={[1, 1, 1]}  />
       <meshStandardMaterial 
         metalness={1}
-        envMap={hovered ? lighttexture : textureMap}
+        envMap={/* hovered ? lighttexturemap : */ cubetexturemap}
       />
     </mesh>
   )

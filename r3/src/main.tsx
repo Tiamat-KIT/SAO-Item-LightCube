@@ -1,14 +1,18 @@
-import { Canvas } from '@react-three/fiber';
+import React, { Suspense, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Box } from './three/train';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { CubeTextureLoader, CubeRefractionMapping } from 'three';
+import { Box } from './three/train.tsx';
+
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <>
-    <Canvas>
+    <Canvas style={{backgroundColor: "black"}}>
+      <Suspense fallback={null}>
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      {/* <Box position={[-1.2, 0, 0]} /> */}
-      <Box position={[1, 0, 0]} />
+        <pointLight position={[10, 10, 10]} />
+        <Box position={[1, 0, 0]} />
+      </Suspense> 
     </Canvas>
   </>
 )

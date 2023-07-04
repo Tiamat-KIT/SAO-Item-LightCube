@@ -1,6 +1,6 @@
-import {OrbitControls,Plane,Stats, useCubeTexture} from "@react-three/drei"
+import {OrbitControls,Plane} from "@react-three/drei"
 import {Canvas, useFrame, useThree} from "@react-three/fiber"
-import { Suspense, useEffect, useRef,useState } from "react"
+import { Suspense, useRef,useState } from "react"
 import * as three from "three"
 
 
@@ -45,7 +45,7 @@ function App() {
     return (
       <>
         <mesh ref={boxRef} position={[0,1,0]} castShadow receiveShadow
-          onClick={(event) => {setbool(!bool)}}>
+          onClick={() => {setbool(!bool)}}>
           <boxGeometry args={[1,1,1]}/>
           <meshStandardMaterial/>
         </mesh>

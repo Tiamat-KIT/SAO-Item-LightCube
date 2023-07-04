@@ -2,7 +2,7 @@ import {OrbitControls,Plane} from "@react-three/drei"
 import {Canvas, useFrame, useThree} from "@react-three/fiber"
 import { Suspense, useRef,useState } from "react"
 import * as three from "three"
-
+// 使ってないのを消した
 
 function App() {
   function CubeObj1({bool,setbool,speed} : {bool: boolean,setbool:React.Dispatch<React.SetStateAction<boolean>>,speed:number}){
